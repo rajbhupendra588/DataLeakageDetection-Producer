@@ -7,10 +7,6 @@
            http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
 	<!-- partitioner job -->
 	<job id="partitionJob" xmlns="http://www.springframework.org/schema/batch">
-		<!-- master step, 5 threads (grid-size) -->
-		<!-- In the tutorial: gridSize = 5 for 5 Threads to read 5 files in fileNameList: 
-			{"customer-data-1.csv", "customer-data-2.csv", "customer-data-3.csv", "customer-data-4.csv", 
-			"customer-data-5.csv"} -->
 		<step id="masterStep">
 			<partition step="slave" partitioner="partitioner">
 				<handler grid-size="6" task-executor="taskExecutor" />
