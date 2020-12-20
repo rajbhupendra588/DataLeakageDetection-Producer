@@ -1,0 +1,47 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+						 xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						 xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+	<!-- partitioner job -->
+	<job id="partitionJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="masterStep">
+			<partition step="slave" partitioner="partitioner">
+				<handler grid-size="51" task-executor="taskExecutor" />
+			</partition>
+		</step>
+		<listeners>
+			<listener ref="customJobListener" />
+		</listeners>
+	</job>
+	<!-- each thread will run this job, with different stepExecutionContext
+		values. -->
+	<step id="slave" xmlns="http://www.springframework.org/schema/batch">
+		<tasklet>
+			<chunk reader="itemReader" processor="itemProcessor" writer="itemWriter" commit-interval="10" />
+		</tasklet>
+		<listeners>
+			<listener ref="customStepListener" />
+		</listeners>
+	</step>
+	<beans:bean id="customJobListener" class="com.appdirect.hackathon2020.iaasconnector.listener.JobCompletionListener" />
+	<beans:bean id="customStepListener" class="com.appdirect.hackathon2020.iaasconnector.listener.StepCompletionListener" />
+	<beans:bean id="partitioner"
+							class="com.appdirect.hackathon2020.iaasconnector.partitioner.SamplePartitioner" />
+	<beans:bean id="taskExecutor"
+							class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
+	<beans:bean id="itemReader"
+							class="com.appdirect.hackathon2020.iaasconnector.step.Reader"
+							factory-method="reader" scope="step">
+		<beans:constructor-arg value="#{stepExecutionContext[filename]}" />
+	</beans:bean>
+	<beans:bean id="itemProcessor"
+							class="com.appdirect.hackathon2020.iaasconnector.step.Processor" scope="step">
+		<beans:property name="threadName" value="#{stepExecutionContext[name]}" />
+	</beans:bean>
+	<beans:bean id="itemWriter"
+							class="com.appdirect.hackathon2020.iaasconnector.step.Writer" scope="step" />
+	<beans:bean class="org.springframework.batch.core.scope.StepScope" />
+</beans:beans>
