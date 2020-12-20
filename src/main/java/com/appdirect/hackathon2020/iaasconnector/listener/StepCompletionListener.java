@@ -49,6 +49,7 @@ public class StepCompletionListener implements StepExecutionListener {
 		String strLine = null;
 		String str1 = null;
 		List<String> al2 = new ArrayList<>();
+		List<String> al4 = new ArrayList<>();
 		List<Invoice> result = null;
 		try {
 			String filePath = "/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/resources/";
@@ -63,8 +64,9 @@ public class StepCompletionListener implements StepExecutionListener {
 			System.out.println("Step ArrayList is =" + al);
 			System.out.println("Step ArrayList2 is =" + al2);
 			al3.addAll(al);
-			al.add(fileName);
+			al4.addAll(al);
 			al.add(hash.calculate(al));
+			al.add(fileName);
 
 			System.out.println("Step checksum List is =" + al);
 			br1.close();
@@ -88,7 +90,7 @@ public class StepCompletionListener implements StepExecutionListener {
 					}
 				});
 			System.out.println("Step Data of Records:" + result.toString());
-			InvoiceWrapper invoiceWrapper1 = new InvoiceWrapper(result, al.get(al.size() - 2), al.get(al.size() - 1));
+			InvoiceWrapper invoiceWrapper1 = new InvoiceWrapper(result, al.get(al.size() - 1), al.get(al.size() - 2));
 			amqpProducer.sendMessage(invoiceWrapper1);
 			System.out.println("invoiceWrapper1 Data of Records:" + invoiceWrapper1.toString());
 		}
