@@ -25,6 +25,8 @@ public class JobCompletionListener implements JobExecutionListener {
 	@Override
 	public void beforeJob(JobExecution jobExecution) {
 		System.out.println("Executing job id " + jobExecution.getId());
+		jdbcTemplate.update("delete from invoice");
+		System.out.println("Data of table invoice has been deleted during job Initialization");
 	}
 
 	@Override
@@ -43,6 +45,8 @@ public class JobCompletionListener implements JobExecutionListener {
 				});
 			System.out.println("Number of Records:" + result.size());
 			System.out.println("Data of Records:" + result.toString());
+
+
 		}
 	}
 }

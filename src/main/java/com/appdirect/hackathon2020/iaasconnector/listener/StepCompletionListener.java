@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import com.appdirect.hackathon.hashlib.Hash;
 import com.appdirect.hackathon2020.iaasconnector.model.Invoice;
 import com.appdirect.hackathon2020.iaasconnector.model.InvoiceWrapper;
+import com.appdirect.hackathon2020.iaasconnector.producer.AMQPProducer;
 
 @Component
 public class StepCompletionListener implements StepExecutionListener {
@@ -30,6 +31,8 @@ public class StepCompletionListener implements StepExecutionListener {
 	public JdbcTemplate jdbcTemplate;
 	public Hash hash;
 	InvoiceWrapper invoiceWrapper;
+	@Autowired
+	AMQPProducer amqpProducer;
 
 	@Override
 	public void beforeStep(StepExecution stepExecution) {
@@ -86,6 +89,7 @@ public class StepCompletionListener implements StepExecutionListener {
 				});
 			System.out.println("Step Data of Records:" + result.toString());
 			InvoiceWrapper invoiceWrapper1 = new InvoiceWrapper(result, al.get(al.size() - 2), al.get(al.size() - 1));
+			amqpProducer.sendMessage(invoiceWrapper1);
 			System.out.println("invoiceWrapper1 Data of Records:" + invoiceWrapper1.toString());
 		}
 		return stepExecution.getExitStatus();

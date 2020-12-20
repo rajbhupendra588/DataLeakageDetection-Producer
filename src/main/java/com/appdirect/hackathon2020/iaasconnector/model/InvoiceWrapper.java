@@ -15,6 +15,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InvoiceWrapper {
+	private static final long serialVersionUID = 7985035234194877060L;
 	private List<Invoice> invoiceList;
 	private String chunkId;
 	private String checksum;
