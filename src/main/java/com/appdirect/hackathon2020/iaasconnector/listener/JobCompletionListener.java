@@ -14,12 +14,15 @@ import org.springframework.stereotype.Component;
 
 import com.appdirect.hackathon.hashlib.Hash;
 import com.appdirect.hackathon2020.iaasconnector.model.Invoice;
+import com.appdirect.hackathon2020.iaasconnector.producer.JobAMQPProducer;
 
 @Component
 public class JobCompletionListener implements JobExecutionListener {
 	@Autowired
 	public JdbcTemplate jdbcTemplate;
 	public Hash hash;
+	@Autowired
+	JobAMQPProducer jobAMQPProducer ;
 
 
 	@Override
@@ -45,8 +48,7 @@ public class JobCompletionListener implements JobExecutionListener {
 				});
 			System.out.println("Number of Records:" + result.size());
 			System.out.println("Data of Records:" + result.toString());
-
-
+			//jobAMQPProducer.sendJobMessage("Job has been completed");
 		}
 	}
 }

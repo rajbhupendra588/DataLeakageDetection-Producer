@@ -52,7 +52,7 @@ public class StepCompletionListener implements StepExecutionListener {
 		List<String> al4 = new ArrayList<>();
 		List<Invoice> result = null;
 		try {
-			String filePath = "/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/resources/";
+			String filePath = "/Users/bhupendra.singh/Downloads/DataLeakageDetection/src/main/resources/";
 			BufferedReader br1 = new BufferedReader(new FileReader(filePath + stepExecution.getExecutionContext().getString("filename")));
 
 			while ((strLine = br1.readLine()) != null) {
@@ -90,10 +90,11 @@ public class StepCompletionListener implements StepExecutionListener {
 					}
 				});
 			System.out.println("Step Data of Records:" + result.toString());
-			InvoiceWrapper invoiceWrapper1 = new InvoiceWrapper(result, al.get(al.size() - 1), al.get(al.size() - 2));
-			amqpProducer.sendMessage(invoiceWrapper1);
-			System.out.println("invoiceWrapper1 Data of Records:" + invoiceWrapper1.toString());
-		}
+
+				InvoiceWrapper invoiceWrapper1 = new InvoiceWrapper(result, al.get(al.size() - 1), al.get(al.size() - 2));
+				amqpProducer.sendMessage(invoiceWrapper1);
+				System.out.println("invoiceWrapper1 Data of Records:" + invoiceWrapper1.toString());
+			}
 		return stepExecution.getExitStatus();
 	}
 }

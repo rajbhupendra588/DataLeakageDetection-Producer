@@ -9,7 +9,7 @@
 	<job id="partitionJob" xmlns="http://www.springframework.org/schema/batch">
 		<step id="masterStep">
 			<partition step="slave" partitioner="partitioner">
-				<handler grid-size="51" task-executor="taskExecutor" />
+				<handler grid-size="11" task-executor="taskExecutor" />
 			</partition>
 		</step>
 		<listeners>

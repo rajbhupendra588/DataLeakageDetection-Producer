@@ -18,7 +18,7 @@ public class SamplePartitioner implements Partitioner{
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	List<String> fileNameList1 = Files.list(Paths.get("/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/resources/"))
+	List<String> fileNameList1 = Files.list(Paths.get("/Users/bhupendra.singh/Downloads/DataLeakageDetection/src/main/resources/"))
 		.filter(s -> s.toString().endsWith(".csv"))
 		.filter(Files::isRegularFile)
 		.sorted()

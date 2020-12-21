@@ -40,9 +40,9 @@ public class WebController {
 		JobParameters jobParameters=null;
 
 		try {
-			int lines = 10;  //set this to whatever number of lines you need in each file
+			int lines = 50;  //set this to whatever number of lines you need in each file
 			int count = 0;
-			String inputfile = "/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/resources/files/invoice.csv";
+			String inputfile = "/Users/bhupendra.singh/Downloads/DataLeakageDetection/src/main/resources/files/invoice.csv";
 			File file = new File(inputfile);
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {  //counting the lines in the input file
@@ -75,7 +75,7 @@ public class WebController {
 
 	private void myFunction(int lines, int files) throws FileNotFoundException, IOException, NoSuchAlgorithmException {
 
-		String inputfile = "/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/resources/files/invoice.csv";
+		String inputfile = "/Users/bhupendra.singh/Downloads/DataLeakageDetection/src/main/resources/files/invoice.csv";
 		BufferedReader br = new BufferedReader(new FileReader(inputfile)); //reader for input file intitialized only once
 		br.readLine(); // consume first line and ignore
 		String strLine;
@@ -98,11 +98,11 @@ public class WebController {
 			al.clear();
 		}
 
-		String inputfile1 = "/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/resources/files/invoice.csv";
+		String inputfile1 = "/Users/bhupendra.singh/Downloads/DataLeakageDetection/src/main/resources/files/invoice.csv";
 		BufferedReader br1 = new BufferedReader(new FileReader(inputfile1)); //reader for input file intitialized only once
 		br1.readLine();
 		for (int i=1,k=0;i<files && k < al1.size();i++,k++) {
-			FileWriter fstream1 = new FileWriter("/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/resources/" +(i)+"_file.csv"); //creating a new file writer.
+			FileWriter fstream1 = new FileWriter("/Users/bhupendra.singh/Downloads/DataLeakageDetection/src/main/resources/" +(i)+"_file.csv"); //creating a new file writer.
 
 			BufferedWriter out = new BufferedWriter(fstream1);
 			for(int j=1;j<=lines;j++){   //iterating the reader to read only the first few lines of the csv as defined earlier
