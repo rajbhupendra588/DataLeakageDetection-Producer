@@ -1,0 +1,8 @@
+/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/java/com/appdirect/hackathon2020/iaasconnector/dataleakdetection/model/Customer.java
+/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/java/com/appdirect/hackathon2020/iaasconnector/dataleakdetection/step/Writer.java
+/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/java/com/appdirect/hackathon2020/iaasconnector/dataleakdetection/step/Processor.java
+/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/java/com/appdirect/hackathon2020/iaasconnector/dataleakdetection/partitioner/SamplePartitioner.java
+/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/java/com/appdirect/hackathon2020/iaasconnector/dataleakdetection/SpringBatchPartitioningApplication.java
+/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/java/com/appdirect/hackathon2020/iaasconnector/dataleakdetection/step/Reader.java
+/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/java/com/appdirect/hackathon2020/iaasconnector/dataleakdetection/dao/CustomerDao.java
+/Users/bhupendra.singh/Downloads/SpringBatchPartitioning/src/main/java/com/appdirect/hackathon2020/iaasconnector/dataleakdetection/controller/WebController.java
